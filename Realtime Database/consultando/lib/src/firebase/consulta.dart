@@ -27,8 +27,8 @@ class _FirebaseConsultaPage extends State<FirebaseConsultaPage> {
               users.add(values[i]);        
             }
           }
+          print(users);
         }
-        print(users);
       });
     });
   }
