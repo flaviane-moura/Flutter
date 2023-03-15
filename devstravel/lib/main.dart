@@ -1,11 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/models/appdata.dart';
 
 import 'src/pages/preload.dart';
 import 'src/pages/home.dart';
+import 'src/pages/search.dart';
 
 void main() => runApp(
   MultiProvider(
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/preload': (context) => PreloadPage(),
-        '/home': (context) => HomePage()
+        '/home': (context) => HomePage(),
+        '/search': (context) => SearchPage()
       },
       initialRoute: '/preload',
     );

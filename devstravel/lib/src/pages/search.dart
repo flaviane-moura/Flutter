@@ -5,15 +5,9 @@ import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
 
-class HomePage extends StatelessWidget {
+class SearchPage extends StatelessWidget {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-  TextStyle styles = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.bold,
-    fontFamily: 'Helvetica Neue'
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +17,16 @@ class HomePage extends StatelessWidget {
         appBar: CustomAppbar(
           scaffoldKey: _scaffoldKey,
           pageContext: context,
-          title: 'Página Home'
+          title: 'Busque uma cidade',
+          hideSearch: true
         ),
         drawer: Drawer(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
-              
-              Container(
-                margin: EdgeInsets.only(bottom: 30),
-                child: Text('Bem vindo(a) ao', style: styles),
-              ),
-              Image.asset('lib/assets/devstravel_logo.png', width: 200),
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Text('Seu guia de viagem perfeito', style: styles),
-              )
+              Text('Página de busca...')
             ],
           )
         ),
