@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
+import '../partials/customdrawer.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -25,7 +26,9 @@ class HomePage extends StatelessWidget {
           pageContext: context,
           title: 'Página Home'
         ),
-        drawer: Drawer(),
+        drawer: CustomDrawer(
+          pageContext: context
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
