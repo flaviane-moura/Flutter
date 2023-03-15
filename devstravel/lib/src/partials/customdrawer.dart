@@ -51,7 +51,7 @@ Widget CustomDrawer({
           leading: Icon(Icons.public, color: Colors.black),
           title: Text('Escolher Continente'),
           onTap: (){
-            Navigator.pushReplacementNamed(pageContext, '/continente');
+            Navigator.pushReplacementNamed(pageContext, '/continent');
           },
         ),
 
