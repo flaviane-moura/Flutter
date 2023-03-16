@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
+import '../partials/citybox.dart';
 
 class ContinentPage extends StatelessWidget {
 
@@ -60,12 +61,11 @@ class ContinentPage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: cities.length,
                     itemBuilder: (cityContext, cityIndex){
-                      return Container(
-                        width: 130,
-                        height: 130,
-                        color: Colors.red,
-                        margin: EdgeInsets.only(left: 10, right: 10),
-                        child: Text(cities[cityIndex]['name']),
+                      return CityBox(
+                        data: cities[cityIndex],
+                        onTap: () {
+
+                        }
                       );
                     }
                   ),
