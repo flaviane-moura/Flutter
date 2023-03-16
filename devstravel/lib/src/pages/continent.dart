@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +16,14 @@ class ContinentPage extends StatelessWidget {
     fontWeight: FontWeight.bold,
     fontFamily: 'Helvetica Neue'
   );
+
+  void seeCityAction (continentIndex) {
+    print(continentIndex);
+  }
+
+  void cityBoxAction (cityData) {
+    print(cityData['name']);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +51,31 @@ class ContinentPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      child: Text('${appdata.data[index]['name']} (${cities.length})'),
-                      onPressed: () {},
+                    Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Text(
+                        '${appdata.data[index]['name']} (${cities.length})',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Helvetiva Neue'
+                        ),
+                      ),
                     ),
                     TextButton(
-                      child: Text('Ver cidades'),
-                      onPressed: () {},
+                      // ignore: sort_child_properties_last
+                      child: Text(
+                        'Ver cidades',
+                        style: TextStyle(
+                          fontFamily: 'Helvetica Neue',
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green
+                        ),
+                      ),
+                      onPressed: (){
+                        seeCityAction(index);
+                      }
                     )
                   ],
                 ),
@@ -63,9 +89,7 @@ class ContinentPage extends StatelessWidget {
                     itemBuilder: (cityContext, cityIndex){
                       return CityBox(
                         data: cities[cityIndex],
-                        onTap: () {
-
-                        }
+                        onTap: cityBoxAction
                       );
                     }
                   ),
