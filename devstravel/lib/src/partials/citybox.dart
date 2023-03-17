@@ -11,7 +11,7 @@ class CityBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+      margin: EdgeInsets.all(10),
       child: GestureDetector(
         onTap: (){
           onTap (data);
@@ -66,7 +66,7 @@ class CityBox extends StatelessWidget {
               child: Text(
                 data['name'],
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontSize: 16) 
+                style: TextStyle(color: Colors.white, fontSize: 15) 
               )
             )
           ],

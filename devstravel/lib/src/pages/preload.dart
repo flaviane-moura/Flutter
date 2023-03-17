@@ -31,7 +31,6 @@ class _PreloadPage extends State<PreloadPage> {
     }
   
   }
-
   @override
   void initState(){
     super.initState();
