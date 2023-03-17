@@ -16,8 +16,8 @@ class ListCityPage extends StatelessWidget {
     fontFamily: 'Helvetica Neue'
   );
 
-  void cityBoxAction (cityData) {
-    print(cityData['name']);
+  void cityBoxAction (pageContenxt, cityData) {
+    Navigator.pushNamed(pageContenxt, '/city', arguments: cityData);
   }
 
   @override
@@ -48,7 +48,9 @@ class ListCityPage extends StatelessWidget {
             children: List.generate(cities.length, (index) {
               return CityBox(
                 data: cities[index], 
-                onTap: cityBoxAction,
+                onTap: (cityData) {
+                  cityBoxAction(context, cityData);
+                }
               );
             }),
           )

@@ -22,8 +22,8 @@ class ContinentPage extends StatelessWidget {
     Navigator.pushNamed(context, '/listcity', arguments: continentIndex);
   }
 
-  void cityBoxAction (cityData) {
-    print(cityData['name']);
+  void cityBoxAction (pageContext, cityData) {
+    Navigator.pushNamed(pageContext, '/city', arguments: cityData);
   }
 
   @override
@@ -64,7 +64,6 @@ class ContinentPage extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      // ignore: sort_child_properties_last
                       child: Text(
                         'Ver cidades',
                         style: TextStyle(
@@ -90,7 +89,9 @@ class ContinentPage extends StatelessWidget {
                     itemBuilder: (cityContext, cityIndex){
                       return CityBox(
                         data: cities[cityIndex],
-                        onTap: cityBoxAction
+                        onTap: (cityData) {
+                          cityBoxAction(context, cityData);
+                        }
                       );
                     }
                   ),

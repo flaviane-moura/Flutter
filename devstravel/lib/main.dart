@@ -1,5 +1,4 @@
 // ignore_for_file: use_key_in_widget_constructors
-import 'package:devstravel/src/pages/listcity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/models/appdata.dart';
@@ -8,6 +7,8 @@ import 'src/pages/preload.dart';
 import 'src/pages/home.dart';
 import 'src/pages/search.dart';
 import 'src/pages/continent.dart';
+import 'src/pages/listcity.dart';
+import 'src/pages/city.dart';
 
 void main() => runApp(
   MultiProvider(
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
         '/continent': (context) => ContinentPage(),
-        '/listcity': (context) => ListCityPage()
+        '/listcity': (context) => ListCityPage(),
+        '/city': (context) => CityPage()
       },
       initialRoute: '/preload',
     );
