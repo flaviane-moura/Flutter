@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/appdata.dart';
-import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
 
 class CityPage extends StatelessWidget {
@@ -27,6 +26,7 @@ class CityPage extends StatelessWidget {
     //print(cityData['places']);
 
     final double statusBarHeight = MediaQuery.of(context).padding.top;
+    final double footerHeight = MediaQuery.of(context).padding.bottom;
 
     var starRate = double.parse(cityData['review']).floor();
     var stars = [];
@@ -61,6 +61,7 @@ class CityPage extends StatelessWidget {
             ListView(
               //physics: ClampingScrollPhysics(),   <-- para IOS
               padding: EdgeInsets.zero,
+              
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 220),
@@ -156,9 +157,9 @@ class CityPage extends StatelessWidget {
                       ),
 
                       GridView.count(
-                        padding: EdgeInsets.zero,
+                        padding: EdgeInsets.only(bottom: footerHeight),
                         shrinkWrap: true,
-                        //physics: NeverScrollableScrollPhysics(),    <-- para IOS
+                        physics: NeverScrollableScrollPhysics(),    //<-- para IOS
                         crossAxisCount: 2,
                         children: List.generate(cityData['places'].length * 5, (index){
                           return Container(
