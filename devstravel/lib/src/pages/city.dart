@@ -16,27 +16,177 @@ class CityPage extends StatelessWidget {
     fontFamily: 'Helvetica Neue'
   );
 
+  void backButtonAction (pageContext){
+    Navigator.pop(pageContext);
+  }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> cityData = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;;
 
-    print(cityData['places']);
+    //print(cityData['places']);
+
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
+    var starRate = double.parse(cityData['review']).floor();
+    var stars = [];
+    for(var i = 0; i < 5; i++){
+      if(i < starRate) {
+        stars.add(true);
+      } else {
+        stars.add(false);
+      }
+    }
 
     return Consumer<AppData>(
       builder: (ctx, appdata, child) => Scaffold(
         key: _scaffoldKey,
-        appBar: CustomAppbar(
-          scaffoldKey: _scaffoldKey,
-          pageContext: context,
-          title: 'Tela Cidade'
-        ),
         drawer: CustomDrawer(
           pageContext: context
         ),
         backgroundColor: Colors.white,
-        body: Center(
-          child: Text('...')
-        ),
+        body: Stack(
+          children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 250,
+              child: Image.network(
+                cityData['places'][0]['img'],
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            ListView(
+              //physics: ClampingScrollPhysics(),   <-- para IOS
+              padding: EdgeInsets.zero,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 220),
+                  decoration: BoxDecoration(
+                    color: Colors.white, 
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 5),
+                                  child: Text(
+                                    cityData['name'],
+                                    style: TextStyle(
+                                      fontFamily: 'Helvetica Neue',
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.star, color: stars[0] ? Colors.blue : Colors.grey, size: 16),
+                                    Icon(Icons.star, color: stars[1] ? Colors.blue : Colors.grey, size: 16),
+                                    Icon(Icons.star, color: stars[2] ? Colors.blue : Colors.grey, size: 16),
+                                    Icon(Icons.star, color: stars[3] ? Colors.blue : Colors.grey, size: 16),
+                                    Icon(Icons.star, color: stars[4] ? Colors.blue : Colors.grey, size: 16),
+
+                                    Container(
+                                      margin: EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        cityData['review'],
+                                        style: TextStyle(
+                                          color: Colors.blue,
+                                          fontFamily: 'Helvetica Neue',
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      )
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: IconButton(
+                              onPressed: () {},
+                               icon: Icon(Icons.favorite_border, color: Colors.red)
+                              ),
+                          )
+                        ],
+                      ),
+                      
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 0,
+                          left: 15,
+                          right: 15,
+                          bottom: 10
+                        ),
+                        child: Text(
+                          cityData['description'],
+                          style: TextStyle(
+                            fontFamily: 'Helvetica Neue',
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey
+                          ),
+                        )
+                      ),
+
+                      Divider(thickness: 1),
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: Text(
+                          'PRINCIPAIS PONTOS TURÍSTICOS',
+                          style: TextStyle(
+                            fontFamily: 'Helvetica Neue',
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+
+                      GridView.count(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        //physics: NeverScrollableScrollPhysics(),    <-- para IOS
+                        crossAxisCount: 2,
+                        children: List.generate(cityData['places'].length * 5, (index){
+                          return Container(
+                            margin: EdgeInsets.all(10),
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(color: Colors.pink),
+                          );
+                        }),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+
+            Container(
+              height: 50,
+              margin: EdgeInsets.only(top: statusBarHeight),
+              child: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () {
+                  backButtonAction(context);
+                },
+              ),
+            )
+          ],
+        )
       )
     );
   }
