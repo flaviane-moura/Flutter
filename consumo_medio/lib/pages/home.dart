@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen>{
                               Text (
                                 '${consumos.mediaGeral} km/l',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold
                                 ),
