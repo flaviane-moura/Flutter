@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, curly_braces_in_flow_control_structures, unnecessary_this
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -7,6 +7,35 @@ import 'package:http/http.dart' as http;
 class AppData with ChangeNotifier {
   var data = [];
   var favorites = [];
+
+  List favoritesCities() {
+    List result = [];
+    for(var favorite in favorites) {
+      List foundCities = this.searchCity(favorite);
+      if(foundCities.isNotEmpty){
+        result.add(foundCities[0]);
+      }
+    }
+    return result;
+  }
+
+  List searchCity(text) {
+    List result = [];
+    text = text.trim().toLowerCase();     //trim remove os espaços desnecessários antes e após o texto digitado
+    if(text == ''){
+      return result;
+    }
+    for(var continents in data) {
+      for(var country in continents['countries']) {
+        for(var city in country['cities']) {
+          if(city['name'].toLowerCase().contains(text)) {
+            result.add(city);
+          }
+        }
+      }
+    }
+    return result;
+  }
 
   bool hasFavorite(cityName) {
     return favorites.contains(cityName);
