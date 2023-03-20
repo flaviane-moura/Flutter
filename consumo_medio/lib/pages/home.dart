@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello World')
+        title: Text('Calculadora de Consumo')
       ),
       body: Observer(
         builder: (_) => Column(
@@ -54,24 +54,40 @@ class _HomeScreenState extends State<HomeScreen>{
             ), 
             ElevatedButton(
               onPressed: _handleRegistrarButton, 
-              child: Text('Registrar $consumo')
+              child: Text('Registrar $consumo km/h', style: TextStyle(fontWeight: FontWeight.bold))
             ),
             Row(
               children: [
-                Expanded(
+                /*Expanded(
                   child: Column(
                     children: [
                       Text('Consumos Registrados'),
                       Text('${consumos.list.length}')
                     ],
                   )
-                ),
+                ),*/
                 Expanded(
-                  child: Column(
-                    children: [
-                      Text('Consumos Médio Geral'),
-                      Text('${consumos.mediaGeral}')
-                    ],
+                  child: Center(
+                    child: Column (
+                      children: [
+                        Container (
+                          margin: EdgeInsets.only(top: 20, bottom: 20),
+                          child: Column(
+                            children: [
+                              Text('Consumos Médio Geral', style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text (
+                                '${consumos.mediaGeral} km/l',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                        )
+                      )
+                        
+                    ]),
                   )
                 )
               ],
